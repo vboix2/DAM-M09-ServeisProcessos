@@ -10,12 +10,12 @@ Avui en dia és molt important garantir que les aplicacions gestionin les dades 
 
 La **Java Cryptography Extension (JCE)** és una extensió de la plataforma Java que proporciona implementacions d'algorismes per tal de generar i intercanviar claus, encriptar dades i autentificar missatges.
 
-## 1.1. Xifrat simètric
+### 1.1. Xifrat simètric
 El mecanisme de xifrat més utilitzat és el de **clau simètrica**. En aquest mecanisme existeix una clau o secret, compartida entre tots els que han de llegir les dades, que permet xifrar-les i desxifrar-les.
 
 Un dels primers en utilitzar un algorisme de xifrat simètric va ser Juli Cèsar, que aplicava un desplaçament de 3 lletres a cada caràcter del text (xifrat Cèsar). Un altre mecanisme de xifrat per desplaçament, molt habitual en jocs, és ROT13, que aplica un desplaçament de 13 lletres.
 
-## 1.2. Xifrat assimètric
+### 1.2. Xifrat assimètric
 
 ## 2. Processos i fils
 
