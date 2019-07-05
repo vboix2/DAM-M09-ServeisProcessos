@@ -1,7 +1,7 @@
 
 package criptografia;
 
-public class Classic {
+public class Xifrat_Rotacio {
     // Xifrats per desplaçament
     
     private static char rotacio(char c, int n){

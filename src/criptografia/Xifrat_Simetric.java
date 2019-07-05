@@ -7,7 +7,7 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class Simetric {
+public class Xifrat_Simetric {
     // Xifrat per blocs
     
     public SecretKey generarClau(String text, int mida){

@@ -9,10 +9,10 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-public class Assimetric {
+public class Xifrat_Assimetric {
     // Criptografia de clau pública RSA
     
-    public static KeyPair generarClaus() {
+    public KeyPair generarClaus() {
         // Genera un parell de claus: pública i privada
         KeyPair keys = null;
         try {
@@ -25,7 +25,7 @@ public class Assimetric {
         return keys;
     }
     
-    public static byte[] encriptar(byte[] data, PublicKey pub) {
+    public byte[] encriptar(byte[] data, PublicKey pub) {
         // Encripta dades binàries utilitzant la clau pública
         byte[] dades = null;
         try {
@@ -38,7 +38,7 @@ public class Assimetric {
         return dades;
     }
     
-    public static byte[] desencriptar(byte[] data, PrivateKey priv) {
+    public byte[] desencriptar(byte[] data, PrivateKey priv) {
         // Desencripta dades binàries utiltizant la clau privada
         byte[] dades = null;
         try {
