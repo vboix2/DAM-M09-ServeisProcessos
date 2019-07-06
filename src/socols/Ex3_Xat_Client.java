@@ -1,3 +1,7 @@
+/*
+Implementació de sòcols orientats a connexió (TCP)
+*/
+
 package socols;
 
 import java.io.BufferedReader;
@@ -9,7 +13,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
-public class Xat_Client {
+public class Ex3_Xat_Client {
 
     public static void main(String[] args) {
         int port = 9090;

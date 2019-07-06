@@ -1,3 +1,10 @@
+/*
+Cerca el màxim d'un array d'enters de longitud 1000.
+Divideix l'array en 10 fragments i cerca el màxim de cada fragment 
+a través de 10 fils que s'executen en paral·lel.
+Finalment cerca el màxim dels 10 màxims i el mostra per pantalla.
+*/
+
 package fils;
 
 import java.util.Random;
@@ -64,6 +71,5 @@ class Fil extends Thread{
         for (int x=inici+1; x<=fi; x++){
             if (nums[x]>maxim) maxim=nums[x];
         }
-    }
-    
+    }    
 }

@@ -1,3 +1,7 @@
+/*
+Implementació de sòcols orientats a connexió (TCP)
+*/
+
 package socols;
 
 import java.io.BufferedReader;
@@ -8,7 +12,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 
-public class Xat_Servidor {
+public class Ex3_Xat_Servidor {
     public static void main(String[] args) {
         TcpSocketServer servidor = new TcpSocketServer();
         servidor.listen();
