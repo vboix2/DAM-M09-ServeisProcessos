@@ -1,3 +1,5 @@
+// Exemples d'aplicació dels mètodes criptogràfics
+
 package criptografia;
 
 import javax.crypto.SecretKey;
