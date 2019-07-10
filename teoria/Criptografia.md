@@ -78,10 +78,16 @@ L'emissor xifra el missatge utilitzant la seva clau privada. D'aquesta manera, q
 ![Signatura digital](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Public_key_signing.svg/280px-Public_key_signing.svg.png)
 
 
-## 4. Xifrat amb clau embolcallada (wrapped key)
+## 4. Xifrat amb clau embolcallada
 
 Els algorismes de xifrat assimètric tenen una limitació per a la longitud de les dades a xifrar i acostumen a ser lents. Per aquest motiu, generalment les comunicacions es realitzen amb una combinació de xifrat simètric i assimètric.
 
-En un sistema de **clau embolcallada (wrapped key)** les dades es xifren utilitzant una clau simètrica d'un sol ús generada a l'atzar. Aquesta clau es xifra utilitzant la clau pública del receptor i s'envien conjuntament el missatge xifrat i la clau xifrada. D'aquesta manera, el receptor ha de desxifrar la clau simètrica amb la seva clau privada i utilitzar-la per desxifrar el missatge.
+En un sistema de **clau embolcallada (Key Encapsulation Mechanism)** les dades es xifren utilitzant una clau simètrica d'un sol ús generada a l'atzar. Aquesta clau es xifra utilitzant la clau pública del receptor i s'envien conjuntament el missatge xifrat i la clau xifrada. D'aquesta manera, el receptor ha de desxifrar la clau simètrica amb la seva clau privada i utilitzar-la per desxifrar el missatge.
 
 Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de connexions segures amb un servidor.
+
+## 5. Recursos
+* [Criptografia de clau pública](https://ca.wikipedia.org/wiki/Criptografia_de_clau_pública)
+* [Criptografía y seguridad](https://www.adictosaltrabajo.com/2016/11/10/criptografia-y-seguridad/)
+* [Key encapsulation](https://en.wikipedia.org/wiki/Key_encapsulation)
+
