@@ -84,10 +84,17 @@ Els algorismes de xifrat assimètric tenen una limitació per a la longitud de l
 
 En un sistema de **clau embolcallada (Key Encapsulation Mechanism)** les dades es xifren utilitzant una clau simètrica d'un sol ús generada a l'atzar. Aquesta clau es xifra utilitzant la clau pública del receptor i s'envien conjuntament el missatge xifrat i la clau xifrada. D'aquesta manera, el receptor ha de desxifrar la clau simètrica amb la seva clau privada i utilitzar-la per desxifrar el missatge.
 
+[Exemple de xifrat de clau embolcallada](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_KEM.java)
+
 Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de connexions segures amb un servidor.
 
-## 5. Recursos
+## 5. Certificat digitals
+
+
+## 6. Recursos
+
+* [Apunts de l'IOC](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u3/a1/continguts.html)
+* [Documentació de la classe Cipher](https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html)
 * [Criptografia de clau pública](https://ca.wikipedia.org/wiki/Criptografia_de_clau_pública)
 * [Criptografía y seguridad](https://www.adictosaltrabajo.com/2016/11/10/criptografia-y-seguridad/)
 * [Key encapsulation](https://en.wikipedia.org/wiki/Key_encapsulation)
-
