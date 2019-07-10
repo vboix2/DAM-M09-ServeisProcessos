@@ -32,11 +32,12 @@ Alguns algorismes hash són MD5, SHA-1 i SHA-256.
 
 En Java podem aplicar un algorisme de hash utilitzant la classe **MessageDigest**. La següent funció aplica l'algorisme SHA-256 a una cadena de text.
 
-[Funció generador de hash](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Hash.java)
+[Exemple de funció hash](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Hash.java)
 
 ### 2.2. Algorisme AES
 L'algorisme AES només xifra blocs de bytes de mida fixa (16 bytes), per tant, per transformar dades de qualsevol mida cal dividir-les en blocs de la mida adequada mantenint-ne l'ordre. L'algorisme s'encarrega de processar cada bloc individualment i concatenar els resultats parcials en el mateix ordre. Quan la mida de les dades no coincideix amb un múltiple del tamany dels blocs es genera un *padding*, un farcit que omple les dades fins a la mida del bloc.
-Aquest mètode, anomenat mode **ECB** és poc segur perquè permet detectar blocs repetits o eliminar blocs del missatge. El mètode **CBC** és més segur perquè el xifrat de cada bloc no depèn només del bloc de dades sinó també del resultat del bloc anterior. 
+
+Aquest mètode, anomenat mode **ECB**, és poc segur perquè permet detectar blocs repetits o eliminar blocs del missatge. El mètode **CBC** és més segur perquè el xifrat de cada bloc no depèn només del bloc de dades sinó també del resultat del bloc anterior. 
 
 Java ofereix la classe **Cipher** per xifrar i desxifrar les dades. Aquesta classe no té constructors i cal utilitzar el mètode estàtic *getInstance(...)*, aquest mètode té com a paràmetre d'entrada una cadena de text on cal especificar:
 
@@ -49,3 +50,19 @@ Per xifrar les dades s'utilitza el mètode *init()* amb la clau de xifrat i la c
 [Exemple de mètodes per xifrar i desxifrar les dades](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Simetric.java)
 
 ## 3. Xifrat assimètric
+
+La criptografia assimètrica o de clau pública es basa en la utilització de dues claus per a cada usuari.
+
+* La **clau privada** s'ha de guardar de manera segura i només la pot conèixer el seu creador.
+* La **clau pública** es distribueix a tothom a través de la xarxa.
+
+Aquestes dues claus es generen seguint un esquema matemàtic, de tal manera que un missatge xifrat amb la clau pública només es pot desxifrar amb la clau privada i a l'inversa.
+
+Existeixen diferents algorismes de clau pública, el més utilitzat és el RSA.
+
+La classe **KeyPairGenerator** permet generar parelles de claus correctes de manera segura. Per xifrar i desxifrar les dades també utilitzem la classe *Cipher*.
+
+[Exemple de funcions per al xifrat assimètric](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
+
+## 3.1. Xifrat amb clau embolcallada (wrapped key)
+
