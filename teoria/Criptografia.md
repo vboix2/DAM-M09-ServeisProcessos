@@ -1,5 +1,6 @@
 
 # Criptografia
+Víctor Boix
 
 ## 1. Introducció
 
@@ -56,13 +57,28 @@ La criptografia assimètrica o de clau pública es basa en la utilització de du
 * La **clau privada** s'ha de guardar de manera segura i només la pot conèixer el seu creador.
 * La **clau pública** es distribueix a tothom a través de la xarxa.
 
-Aquestes dues claus es generen seguint un esquema matemàtic, de tal manera que un missatge xifrat amb la clau pública només es pot desxifrar amb la clau privada i a l'inversa.
+Aquestes dues claus es generen conjuntament seguint un esquema matemàtic. En Java, la classe **KeyPairGenerator** permet generar parelles de claus correctes de manera segura; la funció *generarClaus()* de l'exemple mostra com fer-ho.
 
-Existeixen diferents algorismes de clau pública, el més utilitzat és el RSA.
+[Exemple de creació d'una parella de claus](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
 
-La classe **KeyPairGenerator** permet generar parelles de claus correctes de manera segura. Per xifrar i desxifrar les dades també utilitzem la classe *Cipher*.
+Les dues claus funcionen conjuntament, de tal manera que un missatge xifrat amb la clau pública d'un usuari només es pot desxifrar amb la clau privada del mateix usuari i a l'inversa. Aquesta característica permet que el xifrat assimètric tingui dos esquemes de funcionament que estudiarem a continuació.
 
-[Exemple de funcions per al xifrat assimètric](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
+### 3.1. Encriptació amb clau pública
+L'emissor utilitza la clau pública del receptor per xifrar el missatge. Per tant, només el receptor pot desxifrar el missatge utilitzant la seva clau privada. Aquest esquema garanteix la **confidencialitat** del missatge.
 
-## 3.1. Xifrat amb clau embolcallada (wrapped key)
+![Encriptació amb clau pública](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/280px-Public_key_encryption.svg.png)
+
+Per xifrar i desxifrar les dades també utilitzem la classe *Cipher*. Les funcions *encriptar()* i *desencriptar()* mostren com xifrar i desxifrar un missatge utilitzant l'algorisme RSA, el més habitual.
+
+[Exemple de funcions per al xifrat assimètric RSA](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
+
+### 3.2. Signatura digital
+L'emissor xifra el missatge utilitzant la seva clau privada. D'aquesta manera, qualsevol receptor pot desxifrar i verificar el missatge utilitzant la clau pública de l'emissor. Aquest esquema garanteix l'**autenticitat** del missatge perquè no és possible alterar-ne el contingut.
+
+![Signatura digital](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Public_key_signing.svg/280px-Public_key_signing.svg.png)
+
+
+## 4. Xifrat amb clau embolcallada (wrapped key)
+
+
 
