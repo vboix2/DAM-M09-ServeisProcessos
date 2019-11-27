@@ -1,5 +1,5 @@
-
 # Criptografia
+
 Víctor Boix
 
 ## 1. Introducció
@@ -86,7 +86,9 @@ En un sistema de **clau embolcallada (Key Encapsulation Mechanism)** les dades e
 
 Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de connexions segures amb un servidor.
 
+
 ## 5. Recursos
+
 * [Criptografia de clau pública](https://ca.wikipedia.org/wiki/Criptografia_de_clau_pública)
 * [Criptografía y seguridad](https://www.adictosaltrabajo.com/2016/11/10/criptografia-y-seguridad/)
 * [Key encapsulation](https://en.wikipedia.org/wiki/Key_encapsulation)

@@ -1,9 +1,15 @@
 # Programació de serveis i processos
 Apunts del mòdul 9 de Desenvolupament d'Aplicacions Multiplataforma
 
+## Continguts
+
 1. [Criptografia](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/teoria/Criptografia.md)
 2. Processos i fils
 3. Sòcols i serveis
+
+## Activitats
+
+* [Pràctiques](./teoria/Practiques.md)
 
 ## Recursos
 
