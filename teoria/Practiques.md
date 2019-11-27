@@ -15,9 +15,10 @@ Donada la ruta d'un fitxer ha de calcular el resum (SHA-256) de tot el seu conti
 Donada una cadena hexadecimal de 64 caràcters (SHA-256), la funció ha de trobar el text que l'ha generat (utilitzant un atac de força bruta) i tornar-lo com a String.
 El text original només pot ser un nombre de 4 dígits i la funció ha de provar totes les combinacions fins a trobar la correcta.
 
-Pots validar les funcions utilitzant les següents proves: [Tests pràctica 1](./test/criptografia/activitats/Practica1_HashTest.java)
+Pots validar les funcions utilitzant les següents proves: [Tests pràctica 1](../test/criptografia/activitats/Practica1_HashTest.java)
 
-[Solució](./src/criptografia/activitats/Practica1_Hash.java)
+[Solució](../src/criptografia/activitats/Practica1_Hash.java)
+
 
 ### Pràctica 2. Xifrat simètric
 
@@ -38,4 +39,4 @@ Per facilitar les transformacions entre bytes i notació hexadecimal pots utilit
 
 A més, recorda que disposes dels mètodes getBytes() i toString() per transformar bytes a text i a l'inversa.
 
-[Solució](./src/criptografia/activitats/Practica2_XifratSimetric.java)
+[Solució](../src/criptografia/activitats/Practica2_XifratSimetric.java)
