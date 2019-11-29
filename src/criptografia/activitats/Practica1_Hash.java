@@ -1,7 +1,3 @@
-/*
-
- */
-
 package criptografia.activitats;
 
 import criptografia.Hash;
