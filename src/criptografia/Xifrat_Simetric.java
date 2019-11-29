@@ -4,14 +4,28 @@ package criptografia;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 
 public class Xifrat_Simetric {
-    // Xifrat per blocs
     
-    public SecretKey generarClau(String text, int mida){
-        // Genera una clau de xifrat
+    public static void main(String[] args) {
+        // Generem la clau de xifrat
+        SecretKey clau = generarClau("password",192);
+        // Xifrem el missatge
+        byte[] dades_enc = encriptar(clau,"Missatge");
+        String text_enc = DatatypeConverter.printHexBinary(dades_enc);
+        System.out.println(text_enc);
+        
+        // Desxifrem les dades encriptades
+        String text_clar = desencriptar(clau, dades_enc);
+        System.out.println(text_clar);
+    }
+    
+    public static SecretKey generarClau(String text, int mida){
+        // Genera una clau de xifrat utilitzant una contrasenya
         SecretKey sKey = null;
         if ((mida == 128)||(mida == 192)||(mida == 256)) {
             try {
@@ -27,7 +41,19 @@ public class Xifrat_Simetric {
         return sKey;
     }
     
-    public byte[] encriptar (SecretKey clau, String text) {
+    public static SecretKey generarClauAleatoria(){
+        // Genera una clau de xifrat aleatòria
+        KeyGenerator kgen = null;
+        try {
+            kgen = KeyGenerator.getInstance("AES");
+            kgen.init(128);
+        } catch (Exception ex){
+            System.err.println("Error generant la clau " + ex);
+        }
+        return kgen.generateKey();
+    }
+    
+    public static byte[] encriptar (SecretKey clau, String text) {
         // Encripta les dades
         byte[] dades = null;
         byte[] dadesEncriptades = null;
@@ -42,7 +68,7 @@ public class Xifrat_Simetric {
         return dadesEncriptades;
     }
     
-    public String desencriptar (SecretKey clau, byte[] dades) {
+    public static String desencriptar (SecretKey clau, byte[] dades) {
         // Desencripta les dades
         String text = null;
         byte[] dadesDesencriptades = null;

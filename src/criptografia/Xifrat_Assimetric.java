@@ -6,11 +6,29 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
 
 public class Xifrat_Assimetric {
-    // Criptografia de clau pública RSA
+    // Criptografia de clau pública
     
-    public KeyPair generarClaus() {
+    public static void main(String[] args) {
+        // Exemples d'utilització de les funcions
+        
+        // Generem una parella de clau
+        KeyPair claus = generarClaus();
+        
+        //Encriptem un text amb la clau pública
+        byte[] dades_enc = encriptar("missatge secret", claus.getPublic());
+        String text_enc = DatatypeConverter.printHexBinary(dades_enc);
+        System.out.println(text_enc);
+        
+        // Desencriptem el text amb la clau privada
+        String missatge = desencriptar(dades_enc, claus.getPrivate());
+        System.out.println(missatge);
+        
+    }
+    
+    public static KeyPair generarClaus() {
         // Genera un parell de claus: pública i privada
         KeyPair keys = null;
         try {
@@ -23,20 +41,21 @@ public class Xifrat_Assimetric {
         return keys;
     }
     
-    public byte[] encriptar(byte[] data, PublicKey pub) {
+    public static byte[] encriptar(String text_clar, PublicKey pub) {
         // Encripta dades binàries utilitzant la clau pública
-        byte[] dades = null;
+        byte[] dades_clar = text_clar.getBytes();
+        byte[] dades_enc = null;
         try {
             Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding","SunJCE");
             cipher.init(Cipher.ENCRYPT_MODE, pub);
-            dades = cipher.doFinal(data);
+            dades_enc = cipher.doFinal(dades_clar);
         } catch (Exception ex) {
             System.err.println("Error xifrant: " + ex);
         }
-        return dades;
+        return dades_enc;
     }
     
-    public byte[] desencriptar(byte[] data, PrivateKey priv) {
+    public static String desencriptar(byte[] data, PrivateKey priv) {
         // Desencripta dades binàries utilitzant la clau privada
         byte[] dades = null;
         try {
@@ -46,6 +65,6 @@ public class Xifrat_Assimetric {
         } catch (Exception ex) {
             System.err.println("Error xifrant: " + ex);
         }
-        return dades;
+        return new String(dades);
     }
 }

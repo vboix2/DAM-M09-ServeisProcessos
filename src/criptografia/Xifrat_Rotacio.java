@@ -3,6 +3,14 @@ package criptografia;
 
 public class Xifrat_Rotacio {
     // Xifrats per desplaçament
+    public static void main(String[] args) {
+        // Exemples
+        String m = "Missatge secret";
+        System.out.println(m);
+        System.out.println(Cesar(m));
+        System.out.println(rot13(m));
+        System.out.println(vigenere(m,"abc"));
+    }
     
     private static char rotacio(char c, int n){
         // Rotació de caràcters ASCII
