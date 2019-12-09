@@ -79,6 +79,9 @@ sKey = new SecretKeySpec(key, "AES");
 [Exemple d'utilització de l'algorisme de hash](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Hash.java)
 
 ### 2.2. Algorisme AES
+Una vegada generada la clau simètrica, podem utilitzar-la per xifrar un text.
+Un dels algorismes de xifrat simètric més utilitzats és l'AES (*Advanced Encryption Standard*), també conegut com a *Rijndael*.
+
 L'algorisme AES només xifra blocs de bytes de mida fixa (16 bytes), per tant, per transformar dades de qualsevol mida cal dividir-les en blocs de la mida adequada mantenint-ne l'ordre.
 L'algorisme s'encarrega de processar cada bloc individualment i concatenar els resultats parcials en el mateix ordre.
 Quan la mida de les dades no coincideix amb un múltiple del tamany dels blocs es genera un *padding*, un farcit que omple les dades fins a la mida del bloc.
@@ -93,8 +96,15 @@ Aquesta classe no té constructors i cal utilitzar el mètode estàtic `getInsta
 * Mode d'operació: "ECB" o "CBC"
 * Tipus de padding: "PKCS5PADDING"
 
-Per xifrar les dades s'utilitza el mètode `init()` amb la clau de xifrat i la constant `Cipher.ENCRYPT_MODE`.
+Una vegada instanciada la classe Cipher, inicialitzem l'objecte amb el mètode `init()` indicant la clau de xifrat i la constant `Cipher.ENCRYPT_MODE`.
 Les dades encriptades s'obtenen en un array de bytes amb el mètode `doFinal()`.
+
+```java
+Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+cipher.init(Cipher.ENCRYPT_MODE, clau);
+byte[] dadesEncriptades = cipher.doFinal(text.getBytes());
+```
+
 Per desxifrar les dades cal utilitzar les dades encriptades i la constant `Cipher.DECRYPT_MODE`.
 
 [Exemple de mètodes per xifrar i desxifrar les dades](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Simetric.java)
@@ -107,9 +117,15 @@ La criptografia assimètrica o de clau pública es basa en la utilització de du
 * La **clau pública** es distribueix a tothom a través de la xarxa.
 
 Aquestes dues claus es generen conjuntament seguint un esquema matemàtic.
-En Java, la classe `KeyPairGenerator` permet generar parelles de claus correctes de manera segura; la funció `generarClaus()` de l'exemple mostra com fer-ho.
+En Java, la classe `KeyPairGenerator` permet generar parelles de claus correctes de manera segura.
 
-[Exemple de creació d'una parella de claus](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
+```java
+KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+keyGen.initialize(2048);
+KeyPair keys = keyGen.genKeyPair();
+```
+
+Una vegada generada la parella de claus, per obtenir la clau pública utilitzem el mètode `getPublic()`i per obtenir la clau privada `getPrivate()`.
 
 Les dues claus funcionen conjuntament, de tal manera que un missatge xifrat amb la clau pública d'un usuari només es pot desxifrar amb la clau privada del mateix usuari i a l'inversa.
 Aquesta característica permet que el xifrat assimètric tingui dos esquemes de funcionament que estudiarem a continuació.
