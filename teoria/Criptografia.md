@@ -192,7 +192,6 @@ Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de con
 
 ## 5. Certificat digitals
 
-
 ## 6. Recursos
 
 * [Apunts de l'IOC](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u3/a1/continguts.html)
@@ -200,3 +199,5 @@ Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de con
 * [Criptografia de clau pública](https://ca.wikipedia.org/wiki/Criptografia_de_clau_pública)
 * [Criptografía y seguridad](https://www.adictosaltrabajo.com/2016/11/10/criptografia-y-seguridad/)
 * [Key encapsulation](https://en.wikipedia.org/wiki/Key_encapsulation)
+* [Certificat digital](https://ca.wikipedia.org/wiki/Certificat_digital)
+* [IDCAT](https://www.idcat.cat/)
