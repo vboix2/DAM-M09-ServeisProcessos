@@ -96,13 +96,13 @@ Aquesta classe no té constructors i cal utilitzar el mètode estàtic `getInsta
 * Mode d'operació: "ECB" o "CBC"
 * Tipus de padding: "PKCS5PADDING"
 
-Una vegada instanciada la classe Cipher, inicialitzem l'objecte amb el mètode `init()` indicant la clau de xifrat i la constant `Cipher.ENCRYPT_MODE`.
-Les dades encriptades s'obtenen en un array de bytes amb el mètode `doFinal()`.
+Una vegada instanciada la classe Cipher, inicialitzem l'objecte amb el mètode `init()`, indicant la clau de xifrat i la constant `Cipher.ENCRYPT_MODE`.
+Les dades en clar s'han d'introduir com a tipus `byte[]` i es xifren utilitzant el mètode `doFinal()`.
 
 ```java
 Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 cipher.init(Cipher.ENCRYPT_MODE, clau);
-byte[] dadesEncriptades = cipher.doFinal(text.getBytes());
+byte[] dadesEncriptades = cipher.doFinal(dades_clar);
 ```
 
 Per desxifrar les dades cal utilitzar les dades encriptades i la constant `Cipher.DECRYPT_MODE`.
@@ -137,9 +137,15 @@ Aquest esquema garanteix la **confidencialitat** del missatge.
 
 ![Encriptació amb clau pública](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/280px-Public_key_encryption.svg.png)
 
-Per xifrar i desxifrar les dades també utilitzem la classe `Cipher`. Les funcions `encriptar()` i `desencriptar()` mostren com xifrar i desxifrar un missatge utilitzant l'algorisme RSA, el més habitual.
+Per xifrar i desxifrar les dades també utilitzem la classe `Cipher`:
 
-[Exemple de funcions per al xifrat assimètric RSA](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
+```java
+Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding","SunJCE");
+cipher.init(Cipher.ENCRYPT_MODE, clau_publica);
+byte[] dades_enc = cipher.doFinal(dades_clar);
+```
+
+[Exemple d'utilització del xifrat assimètric RSA](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
 
 ### 3.2. Signatura digital
 L'emissor xifra el missatge utilitzant la seva clau privada.
@@ -147,6 +153,17 @@ D'aquesta manera, qualsevol receptor pot desxifrar i verificar el missatge utili
 Aquest esquema garanteix l'**autenticitat** del missatge perquè no és possible alterar-ne el contingut.
 
 ![Signatura digital](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Public_key_signing.svg/280px-Public_key_signing.svg.png)
+
+Per signar missatges en Java utilitzem la classe `Signature`.
+
+```java
+Signature signer = Signature.getInstance("SHA1withRSA");
+signer.initSign(priv);
+signer.update(data);
+byte[] signature = signer.sign();
+```
+
+[Exemple de signatura digital](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/FirmaDigital.java)
 
 
 ## 4. Xifrat amb clau embolcallada
