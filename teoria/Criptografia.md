@@ -28,12 +28,22 @@ En aquest apartat ens centrarem en l'algorisme AES (Advanced Encryption Standard
 En Java, la clau simètrica és un objecte de la classe `SecretKey`.
 Aquesta clau pot generar-se aleatòriament o construir-se a partir d'una contrasenya utilitzant un algorisme de hash.
 
-Exemple de creació d'una SecretKey de manera aleatòria.
+Exemple de creació d'una clau simètrica de manera aleatòria.
 
 ```java
 KeyGenerator kgen = KeyGenerator.getInstance("AES");
 kgen.init(128);
 SecretKey clau = kgen.generateKey();
+```
+
+Exemple de creació d'una clau simètrica a partir d'una contrasenya.
+
+```java
+byte[] data = contrasenya.getBytes("ISO-8859-1");
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest(data);
+byte[] key = Arrays.copyOf(hash, 16);
+SecretKey sKey = new SecretKeySpec(key, "AES");
 ```
 
 ### 2.1. Algorisme de hash
