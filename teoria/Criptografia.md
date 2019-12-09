@@ -49,9 +49,34 @@ Alguns algorismes hash són MD5, SHA-1 i SHA-256.
 [Generador de hash SHA-256](https://passwordsgenerator.net/sha256-hash-generator/)
 
 En Java podem aplicar un algorisme de hash utilitzant la classe `MessageDigest`.
-La següent funció aplica l'algorisme SHA-256 a una cadena de text.
+Aquest algorisme només es pot aplicar sobre dades representades en bytes, per tant, haurem de convertir el text a un array de bytes amb la funció `getBytes()`; el resultat també serà de tipus `byte[]`.
 
-[Exemple de funció hash](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Hash.java)
+```java
+byte[] dades = text.getBytes();
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest(dades);
+```
+
+Per imprimir aquest resultat podem utilitzar el mètode estàtic `DatatypeConverter.printHexBinary()` o recórrer l'array i mostrar-lo en format hexadecimal:
+
+```java
+for (byte t:text){
+    System.out.print(String.format("%02X", t));
+}
+```
+
+El resultat d'un algorisme de hash podem utilitzar-lo per generar una clau simètrica, com es mostra a continuació.
+D'aquesta manera crearem la clau de xifrat a partir d'una contrasenya, més fàcil de recordar o anotar.
+
+```java
+byte[] data = text.getBytes();
+MessageDigest md = MessageDigest.getInstance("SHA-256");
+byte[] hash = md.digest(data);
+byte[] key = Arrays.copyOf(hash, 32);
+sKey = new SecretKeySpec(key, "AES");
+```
+
+[Exemple d'utilització de l'algorisme de hash](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Hash.java)
 
 ### 2.2. Algorisme AES
 L'algorisme AES només xifra blocs de bytes de mida fixa (16 bytes), per tant, per transformar dades de qualsevol mida cal dividir-les en blocs de la mida adequada mantenint-ne l'ordre.
