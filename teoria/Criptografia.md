@@ -1,7 +1,5 @@
 # Criptografia
 
-Víctor Boix
-
 ## 1. Introducció
 
 La criptografia s'encarrega d'estudiar com protegir la informació mitjançant la seva transformació.
@@ -20,7 +18,7 @@ Un exemple el trobem en l'establiment de la contrasenya de la xarxa sense fils d
 Un dels primers en utilitzar un algorisme de xifrat simètric va ser Juli Cèsar, que aplicava un desplaçament de 3 lletres a cada caràcter del text (xifrat Cèsar).
 Un altre mecanisme de xifrat per desplaçament, molt habitual en jocs, és ROT13, que aplica un desplaçament de 13 lletres.
 
-[Exemples de xifrat per desplaçament](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Rotacio.java)
+[Exemples de xifrat per desplaçament](../src/criptografia/Xifrat_Rotacio.java)
 
 Actualment existeixen diferents algorismes de xifrat simètric.
 En aquest apartat ens centrarem en l'algorisme AES (Advanced Encryption Standard), però existeixen altres com DES i TripleDES.
@@ -86,7 +84,7 @@ byte[] key = Arrays.copyOf(hash, 32);
 sKey = new SecretKeySpec(key, "AES");
 ```
 
-[Exemple d'utilització de l'algorisme de hash](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Hash.java)
+[Exemple d'utilització de l'algorisme de hash](../src/criptografia/Hash.java)
 
 ### 2.2. Algorisme AES
 Una vegada generada la clau simètrica, podem utilitzar-la per xifrar un text.
@@ -117,7 +115,7 @@ byte[] dadesEncriptades = cipher.doFinal(dades_clar);
 
 Per desxifrar les dades cal utilitzar les dades encriptades i la constant `Cipher.DECRYPT_MODE`.
 
-[Exemple de mètodes per xifrar i desxifrar les dades](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Simetric.java)
+[Exemple de mètodes per xifrar i desxifrar les dades](../src/criptografia/Xifrat_Simetric.java)
 
 ## 3. Xifrat assimètric
 
@@ -155,7 +153,7 @@ cipher.init(Cipher.ENCRYPT_MODE, clau_publica);
 byte[] dades_enc = cipher.doFinal(dades_clar);
 ```
 
-[Exemple d'utilització del xifrat assimètric RSA](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_Assimetric.java)
+[Exemple d'utilització del xifrat assimètric RSA](../src/criptografia/Xifrat_Assimetric.java)
 
 ### 3.2. Signatura digital
 L'emissor xifra el missatge utilitzant la seva clau privada.
@@ -173,7 +171,7 @@ signer.update(data);
 byte[] signature = signer.sign();
 ```
 
-[Exemple de signatura digital](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/FirmaDigital.java)
+[Exemple de signatura digital](../src/criptografia/FirmaDigital.java)
 
 
 ## 4. Xifrat amb clau embolcallada
@@ -185,7 +183,7 @@ En un sistema de **clau embolcallada (Key Encapsulation Mechanism)** les dades e
 Aquesta clau es xifra utilitzant la clau pública del receptor i s'envien conjuntament el missatge xifrat i la clau xifrada.
 D'aquesta manera, el receptor ha de desxifrar la clau simètrica amb la seva clau privada i utilitzar-la per desxifrar el missatge.
 
-[Exemple de xifrat de clau embolcallada](https://github.com/vboix2/DAM-M09-ServeisProcessos/blob/master/src/criptografia/Xifrat_KEM.java)
+[Exemple de xifrat de clau embolcallada](../src/criptografia/Xifrat_KEM.java)
 
 Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de connexions segures amb un servidor.
 
