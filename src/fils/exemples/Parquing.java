@@ -7,11 +7,11 @@ entre 0 i 20 segons per després sortir. Si no hi ha places lliures s'esperen
 a que surti algun cotxe.
 */
 
-package fils;
+package fils.exemples;
 
 import static java.lang.Thread.sleep;
 
-public class Ex2_Parquing {
+public class Parquing {
 
     public static void main(String[] args) {
         // Creem el pàrqing

@@ -5,11 +5,11 @@ a través de 10 fils que s'executen en paral·lel.
 Finalment cerca el màxim dels 10 màxims i el mostra per pantalla.
 */
 
-package fils;
+package fils.exemples;
 
 import java.util.Random;
 
-public class Ex1_Cerca {
+public class Cerca {
 
     public static void main(String[] args) {
         try {
