@@ -50,7 +50,7 @@ Quan comencem un programa hi ha un fil d'execució principal creat pel mètode `
 Aquest fil serà l'encarregat de crear la resta de fils i l'últim en acabar la seva execució.
 Per crear altres fils d'execució tenim dues opcions: heretar de la classe `Thread` o implementar la interfície `Runnable`.
 
-### 3.1. Subclasses de Thread
+### 3.1. Thread
 
 Podem crear diferents fils d'execució instanciant una subclasse de Thread.
 El primer pas serà crear una subclasse que hereti de la classe `Thread`.
@@ -75,6 +75,100 @@ fil1.start();
 fil2.start();
 ```
 
-[Exemple de creació de fils heretant la classe Thread](../src/fils/Fils_Herencia.java)
+[Exemple 1: Creació de fils heretant la classe Thread](../src/fils/Fils_Herencia.java)
 
+### 3.2. Runnable
+
+Java no suporta l'herència múltiple, una classe no pot heretar de més d'una classe.
+Si volem crear fils que heretin d'una altra classe haurem d'utilitzar la interfície Runnable.
+
+En aquest cas haurem de crear una classe que implementi la interfície `Runnable` i sobreescriure el mètode `run()`.
+
+```java
+public class Fils implements Runnable{
+    @Override
+    public void run(){
+        // Instruccions del fil
+    }
+}
+```
+
+Per crear el fil haurem d'instanciar aquesta nova classe i crear un objecte `Thread` utilitzant la instància anterior.
+
+```java
+Fils fils = new Fils();
+Thread fil1 = new Thread(fils);
+Thread fil2 = new Thread(fils);
+```
+
+[Exemple 2: Creació de fils impementant la classe Runnable](../src/fils/Fils_Interficie.java)
+
+## 3. Sincronització de fils
+
+### 3.1. join
+
+El mètode `join()` de la classe `Thread` permet que un fil d'execució esperi la finalització d'un altre.
+Si escrivim `fil1.join()` dins del mètode principal, aquest esperarà la finalització del fil1 abans de continuar l'execució.
+
+Al [primer exemple](../src/fils/Fils_Herencia.java) els dos fils s'inicien simultàniament i només se sincronitzen abans de mostrar el missatge final.
+Això fa que les instruccions de tots dos fils s'alternin de manera variable, en funció de la distribució que en fa el sistema operatiu.
+
+```java
+// Execució dels fils
+primer.start();
+segon.start();
+
+// Sincronització del fils
+primer.join();
+segon.join();
+System.out.println("Final de l'execució dels fils");
+```
+
+Al [segon exemple](../src/fils/Fils_Interficie.java) els fils s'executen seqüencialment. 
+L'inici del segon fil espera la finalització del primer, i el missatge final espera la finalització del segon fil.
+Això dóna com a resultat una execució ordenada de totes les instruccions.
+
+```java
+// Execució seqüencial dels fils
+primer.start();
+primer.join();
+
+segon.start();
+segon.join();
+
+System.out.println("Final de l'execució dels fils");
+```
+
+L'exemple [Cerca.java](../src/fils/exemples/Cerca.java) mostra la utilització del mètode `join()`.
+El programa troba el màxim d'un array de 1000 nombres enters.
+Per fer-ho divideix l'array en 10 fragments i crea 10 fils encarregats de trobar el màxim de cada fragment;
+això permet paral·lelitzar la tasca i millorar l'eficiència del programa.
+El màxim de l'array es calcula com el màxim dels 10 màxims trobats per cada fil; 
+però abans de calcular aquest valor cal assegurar que tots els fils han acabat la seva execució amb el mètode join.
+
+
+### 3.2. sleep
+
+El mètode `sleep(milisegons)` permet bloquejar un fil durant un temps determinat (en milisegons).
+Quan passa aquest temps el fil torna a l'estat de preparat.
+
+Es tracta d'un mètode estàtic que només bloqueja l'execució del fil que executa aquesta instrucció. 
+A més, cal tenir en compte que pot llençar l'excepció `InterruptedException`.
+
+```java
+// Aturem el fil 2 segons
+Thread.sleep(2000);
+```
+
+### 3.3. synchronized
+
+### 3.4. Variables compartides
+
+### 3.5. wait i notify
+
+## 4. Productor-consumidor
+
+## 5. Recursos
+
+* [Classe Thread](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html)
 
