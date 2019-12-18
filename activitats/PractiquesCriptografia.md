@@ -1,8 +1,6 @@
-# Pràctiques
+# Pràctiques de Criptografia
 
-## Criptografia
-
-### Pràctica 1. Algorisme de hash
+## Pràctica 1. Algorisme de hash
 
 L'objectiu de la pràctica és aprendre a utilitzar la classe *MessageDigest*.
 
@@ -20,7 +18,7 @@ Pots validar les funcions utilitzant les següents proves: [Tests pràctica 1](.
 [Solució](../src/criptografia/activitats/Practica1_Hash.java)
 
 
-### Pràctica 2. Xifrat simètric
+## Pràctica 2. Xifrat simètric
 
 L'objectiu de la pràctica és aprendre a xifrar i desxifrar text utilitzant una clau simètrica.
 

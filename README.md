@@ -9,8 +9,9 @@ Apunts del mòdul 9 de Desenvolupament d'Aplicacions Multiplataforma
 
 ## Activitats
 
-* [Pràctiques](./teoria/Practiques.md)
-* [Examen Criptografia 2019](./examens/Examen_2019_Criptografia.pdf) - [Solució](./src/criptografia/activitats/Examen2019.java)
+* [Pràctiques de criptografia](./activitats/PractiquesCriptografia.md)
+* [Pràctiques de programació multifil](./activitats/PractiquesMultifil.md)
+* [Examen Criptografia 2019](./activitats/Examen_2019_Criptografia.pdf) - [Solució](./src/criptografia/activitats/Examen2019.java)
 
 ## Recursos
 
