@@ -26,17 +26,17 @@ public class Fils_Herencia {
 
 class Fil_Thread extends Thread{
 
-    String fil;
+    String nom;
     
-    public Fil_Thread(String num){
-        fil=num;
+    public Fil_Thread(String nom){
+        this.nom = nom;
     }
    
     @Override
     public void run(){
         // Mètode que conté les instruccions del fil
         for (int i=1; i<=10; i++){
-            System.out.println(fil+" - "+i);
+            System.out.println(nom + " - " + i);
         }
     }
 }

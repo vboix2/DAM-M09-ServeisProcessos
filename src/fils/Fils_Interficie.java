@@ -30,8 +30,8 @@ class Fil_Runnable implements Runnable{
     
     String nom;
     
-    public Fil_Runnable(String n){
-        nom = n;
+    public Fil_Runnable(String nom){
+        this.nom = nom;
     }
     
     @Override

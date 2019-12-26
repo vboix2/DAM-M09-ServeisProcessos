@@ -34,8 +34,8 @@ public class Compartida_Interficie {
 
 class Compartida_Fil implements Runnable{
     
-    public volatile int comptador;
-    public volatile boolean fi;
+    public int comptador;
+    public boolean fi;
 
     public Compartida_Fil() {
         this.comptador = 0;

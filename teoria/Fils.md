@@ -103,9 +103,22 @@ Thread fil2 = new Thread(fils);
 
 [Exemple 2: Creació de fils impementant la classe Runnable](../src/fils/Fils_Interficie.java)
 
-## 3. Sincronització de fils
+### 3.3. Mètodes de la classe Thread
 
-### 3.1. join
+Alguns mètodes importants de la classe `Thread`:
+
+* static Thread currentThread() - retorna el fil que s'està executant
+* void setName() - assigna un nom al fil
+* String getName() - retorna el nom del fil
+* boolean isAlive() - indica si el fil està actiu
+* void start() - deixa el fil preparat per executar-se
+* void join() - atura l'execució del fil a l'espera de la finalització del fil invocat
+* static void sleep(long milisegons) - atura el fil durant el nombre de mil·lisegons indicats
+
+
+## 4. Sincronització de fils
+
+### 4.1. join
 
 El mètode `join()` de la classe `Thread` permet que un fil d'execució esperi la finalització d'un altre.
 Si escrivim `fil1.join()` dins del mètode principal, aquest esperarà la finalització del fil1 abans de continuar l'execució.
@@ -147,7 +160,7 @@ El màxim de l'array es calcula com el màxim dels 10 màxims trobats per cada f
 però abans de calcular aquest valor cal assegurar que tots els fils han acabat la seva execució amb el mètode join.
 
 
-### 3.2. sleep
+### 4.2. sleep
 
 El mètode `sleep(milisegons)` permet bloquejar un fil durant un temps determinat (en milisegons).
 Quan passa aquest temps el fil torna a l'estat de preparat.
@@ -160,13 +173,117 @@ A més, cal tenir en compte que pot llençar l'excepció `InterruptedException`.
 Thread.sleep(2000);
 ```
 
-### 3.3. synchronized
+### 4.3. synchronized
 
-### 3.4. Variables compartides
+El modificador `synchronized` permet marcar un mètode com a sincronitzat i protegir les dades d'un objecte d'accessos concurrents.
+Quan treballem amb variables compartides és important que els accessos estiguin protegits.
+Si dos fils accedeixen o modifiquen simultàniament una variable poden donar-se errors o resultats incoherents.
 
-### 3.5. wait i notify
+Els mètodes sincronitzats proporcionen exclusió mútua per accedir a un recurs compartit.
+Quan un fil executa un mètode sincronitzat bloqueja l'objecte fins que acabi la seva execució.
+
+Per marcar un mètode com a sincronitzat només cal indicar-ho a la seva declaració amb el modificador `synchronized`.
+
+```java
+public synchronized void metode(){
+    //...
+}
+```
+
+També pot marcar-se com a sincronitzat únicament un bloc de codi dins del mètode.
+
+```java
+public void metodeNoSincronitzat(){
+    // Codi no sincronitzat
+    synchronized(this){
+        // Codi sincronitzat
+    }
+}
+```
+
+[Comptador compartit entre fils](../src/fils/Compartida_Herencia.java)
+
+### 4.4. wait i notify
+
+Els mètodes `wait()`, `notify()` i `notifyAll()` serveixen per a què els fils es comuniquin entre si;
+permeten que un mètode esperi a un altre abans de continuar la seva execució.
+
+* `wait()` - bloqueja un fil a l'espera de què un altre fil completi una tasca
+* `notify()` - desbloqueja un dels fils en espera
+* `notifyAll()` - desbloqueja tots els fils en espera
+
+Aquests mètodes s'han de cridar sempre des d'un mètode sincronitzat.
+A més, cal tenir en compte que el mètode wait pot llençar l'excepció `InterruptedException`.
+
+Un possible esquema de treball d'aquests mètodes és el següent.
+
+```java
+synchronized void metode(){
+    while(!condicio){
+        wait();
+    }
+    // Codi a executar quan la condició és certa
+    condicio = false;
+}
+
+synchronized void canviCondicio(){
+    // Codi anterior a la condició
+    condicio = true;
+    notify();
+}
+```
 
 ## 4. Productor-consumidor
+
+El model productor-consumidor és un exemple clàssic de programació concurrent.
+Un fil (productor) genera unes dades que han de ser processades per un altre fil (consumidor).
+El consumidor ha d'esperar a tenir dades disponibles per iniciar el seu procés;
+mentre que el productor ha d'esperar que hi hagi espai per a noves dades abans de desar-les.
+
+### 4.1. Monitor
+
+En aquest esquema, productor i consumidor només disposen d'una variable compartida per a transferir-se la informació.
+El consumidor rebrà una notificació quan pugui llegir les dades i avisarà al productor que ja pot desar noves dades.
+El productor rebrà la notificació, generarà noves dades, les desarà a la variable compartida i ho notificarà al consumidor.
+
+```java
+public synchronized void productor(){
+    while(disponible){
+        wait();
+    }
+    // Generació de noves dades
+    disponible = true;
+    notify();
+}
+public synchronized void consumidor(){
+    while(!disponible){
+        wait();
+    }
+    // Lectura de les dades
+    disponible = false;
+    notify();
+}
+```
+
+[Exemple de productor-consumidor](../src/fils/ProductorConsumidor.java)
+
+### 4.2. Pila (LIFO)
+
+L'esquema de pila (*Last In First Out*) permet que productor i consumidor disposin de més espai per compartir informació.
+En aquest cas el productor generarà noves dades mentre hi hagi espai a la pila.
+El consumidor processarà les dades de la pila mentre hi hagi informació disponible i 
+començant sempre per la última introduïda.
+
+[Exemple de pila](../src/fils/ProductorConsumidor_Pila.java)
+
+### 4.3. Cua (LILO)
+
+L'esquema de cua (*Last In Last Out*) també permet que productor i consumidor disposin de més espai per compartir informació, 
+però, a diferència de la pila, les dades es processen estrictament en l'ordre d'arribada.
+El productor generarà noves dades mentre hi hagi espai a la cua i el consumidor 
+processarà les dades de la pila mentre hi hagi informació disponible i mantenint l'ordre d'arribada.
+
+[Exemple de cua](../src/fils/ProductorConsumidor_Cua.java)
 
 ## 5. Recursos
 

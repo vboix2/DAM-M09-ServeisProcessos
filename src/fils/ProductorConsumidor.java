@@ -17,10 +17,10 @@ public class ProductorConsumidor {
 
 class Magatzem {
 
-    private volatile int numero;
+    private int numero;
     public volatile boolean buit;
 
-    void Magatzem() {
+    public Magatzem() {
         numero = 0;
         buit = true;
     }
@@ -39,6 +39,7 @@ class Magatzem {
         System.out.println("Agafat el número: " + numero);
         // El marquem com a buit
         buit = true;
+        notify();
     }
 
     public synchronized void deixar(int num) {
