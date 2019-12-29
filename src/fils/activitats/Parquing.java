@@ -1,13 +1,5 @@
-/*
-Aquesta aplicació simula el control d'accés a un pàrquing públic.
-El pàrquing té 10 places i simularem l'entrada de 20 cotxes.
-Quan s'inicia l'aplicació els cotxes intenten entrar al pàrquing després
-d'un temps aleatori entre 0 i 10 segons. Si tenen espai entren i s'hi estan
-entre 0 i 20 segons per després sortir. Si no hi ha places lliures s'esperen
-a que surti algun cotxe.
-*/
 
-package fils.exemples;
+package fils.activitats;
 
 public class Parquing {
 

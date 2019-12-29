@@ -203,6 +203,7 @@ public void metodeNoSincronitzat(){
 
 [Comptador compartit entre fils](../src/fils/Compartida_Herencia.java)
 
+
 ### 4.4. wait i notify
 
 Els mètodes `wait()`, `notify()` i `notifyAll()` serveixen per a què els fils es comuniquin entre si;
@@ -287,5 +288,6 @@ processarà les dades de la pila mentre hi hagi informació disponible i manteni
 
 ## 5. Recursos
 
+* [Pràctiques de programació multifil](./activitats/PractiquesMultifil.md)
 * [Classe Thread](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html)
 

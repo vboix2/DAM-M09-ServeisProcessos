@@ -1,4 +1,5 @@
-package fils.exemples;
+
+package fils.activitats;
 
 
 public class Transaccions_Banc {

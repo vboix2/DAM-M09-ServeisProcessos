@@ -1,15 +1,9 @@
-/*
-Cerca el màxim d'un array d'enters de longitud 1000.
-Divideix l'array en 10 fragments i cerca el màxim de cada fragment 
-a través de 10 fils que s'executen en paral·lel.
-Finalment cerca el màxim dels 10 màxims i el mostra per pantalla.
-*/
 
-package fils.exemples;
+package fils.activitats;
 
 import java.util.Random;
 
-public class Cerca {
+public class MaximArray {
 
     public static void main(String[] args) {
         try {
@@ -24,9 +18,9 @@ public class Cerca {
             // Nombre de fils
             int N=10;
             // Generem els fils
-            Fil[] fils = new Fil[N];
+            FilMax[] fils = new FilMax[N];
             for (int i=0;i<N; i++){
-                fils[i] = new Fil(i*X/N, (i+1)*X/N-1, nombres);
+                fils[i] = new FilMax(i*X/N, (i+1)*X/N-1, nombres);
                 fils[i].start();
             }
             // Array amb els màxims de cada fil
@@ -36,7 +30,7 @@ public class Cerca {
                 maxims[i]=fils[i].getMaxim();
             }
             // Trobem el màxim dels màxims
-            Fil ultim = new Fil(0,N-1, maxims);
+            FilMax ultim = new FilMax(0,N-1, maxims);
             ultim.start();
             ultim.join();
             System.out.println(ultim.getMaxim());   
@@ -49,13 +43,13 @@ public class Cerca {
     
 }
 
-class Fil extends Thread{
+class FilMax extends Thread{
     private int maxim; // Màxim del fil
     private int inici;  // Posició inicial de la cerca
     private int fi;  // Posició final de la cerca
     private int[] nums;  // Array de valors
     
-    public Fil(int i, int f, int[] nums){
+    public FilMax(int i, int f, int[] nums){
         this.inici=i;
         this.fi=f;
         this.nums = nums;
