@@ -10,7 +10,7 @@ L'objectiu de la pràctica és crear un programa que reparteixi una tasca entre 
 4. Guarda els màxims en un nou array i utilitza un darrer fil per cerca el màxim de tots els màxims
 5. Imprimeix per pantalla el valor màxim de tot l'array
 
-[Solució](./src/fils/activitats/MaximArray.java)
+[Solució](../src/fils/activitats/MaximArray.java)
 
 ## Suma d'un array
 
@@ -34,8 +34,8 @@ Farem una aplicació que gestioni l'accés a un pàrquing públic.
 * Cal mostrar un missatge cada cop que un cotxe entra o surt.
 * També cal portar un comptador de les places lliures, fer esperar un cotxe si no hi ha espai i notificar-li quan pot entrar.
 
-[Solució](./src/fils/activitats/Parquing.java)
+[Solució](../src/fils/activitats/Parquing.java)
 
 ## Transaccions en un banc
 
-[Solució](./src/fils/activitats/Transaccions_Banc.java)
+[Solució](../src/fils/activitats/Transaccions_Banc.java)
