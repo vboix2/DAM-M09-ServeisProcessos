@@ -41,8 +41,8 @@ class Comptador_Fil extends Thread{
 }
 
 class Comptador {
-    private boolean fi;
-    private int num;
+    private volatile boolean fi;
+    private volatile int num;
     private int ultim;
     
     public Comptador(int u){

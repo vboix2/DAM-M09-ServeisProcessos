@@ -17,7 +17,7 @@ public class ProductorConsumidor {
 
 class Magatzem {
 
-    private int numero;
+    private volatile int numero;
     public volatile boolean buit;
 
     public Magatzem() {

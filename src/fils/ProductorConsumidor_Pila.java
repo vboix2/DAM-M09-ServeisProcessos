@@ -21,8 +21,8 @@ public class ProductorConsumidor_Pila {
 
 class Pila {
     private int mida;
-    private int pila[];
-    private int segNum;
+    private volatile int pila[];
+    private volatile int segNum;
     
     public Pila(int mida){
         this.mida = mida;

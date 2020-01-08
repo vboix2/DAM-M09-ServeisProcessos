@@ -173,7 +173,35 @@ A més, cal tenir en compte que pot llençar l'excepció `InterruptedException`.
 Thread.sleep(2000);
 ```
 
-### 4.3. synchronized
+### 4.3. volatile
+
+En Java, la paraula clau `volatile` indica al compilador que qualsevol lectura o escriptura 
+sobre el valor d'una variable es faci sempre a la memòria principal i no a la memòria cau del processador. 
+Això garanteix que el seu valor serà sempre visible immediatament per a tots els 
+fils en execució i, per tant, que els fils sempre llegiran el seu valor més actual.
+El modificador `volatile` també evita que el compilador optimitzi el codi i 
+reordeni o suprimeixi instruccions sobre variables declarades com a volàtils.
+
+Per declarar una variable com a volàtil cal indicar-ho a la seva declaració.
+
+```java
+public volatile boolean flag;
+```
+
+Cal tenir en compte que les variables de tipus `volatile` poden afectar el rendiment de 
+l'aplicació, ja que les operacions on intervenen seran molt més lentes en efectuar-se
+sempre sobre la memòria principal.
+
+Les variable volàtils ens eviten llegir valors desactualitzats d'una variable, 
+però no eviten problemes d'actualitzacions concurrents;
+per exemple que dos fils modifiquin un valor simultàniament o 
+que un fil llegeixi un valor mentre un altre el modifica.
+Per evitar aquest tipus de problemes cal que aquestes operacions es realitzin de 
+forma atòmica, és a dir, que no es pugui interrompre l'actualització executant 
+instruccions d'altres fils. En aquestes situacions cal utilitzar els mètodes sincronitzats.
+
+
+### 4.4. synchronized
 
 El modificador `synchronized` permet marcar un mètode com a sincronitzat i protegir les dades d'un objecte d'accessos concurrents.
 Quan treballem amb variables compartides és important que els accessos estiguin protegits.
@@ -204,7 +232,7 @@ public void metodeNoSincronitzat(){
 [Comptador compartit entre fils](../src/fils/Compartida_Herencia.java)
 
 
-### 4.4. wait i notify
+### 4.5. wait i notify
 
 Els mètodes `wait()`, `notify()` i `notifyAll()` serveixen per a què els fils es comuniquin entre si;
 permeten que un mètode esperi a un altre abans de continuar la seva execució.
@@ -234,14 +262,14 @@ synchronized void canviCondicio(){
 }
 ```
 
-## 4. Productor-consumidor
+## 5. Productor-consumidor
 
 El model productor-consumidor és un exemple clàssic de programació concurrent.
 Un fil (productor) genera unes dades que han de ser processades per un altre fil (consumidor).
 El consumidor ha d'esperar a tenir dades disponibles per iniciar el seu procés;
 mentre que el productor ha d'esperar que hi hagi espai per a noves dades abans de desar-les.
 
-### 4.1. Monitor
+### 5.1. Monitor
 
 En aquest esquema, productor i consumidor només disposen d'una variable compartida per a transferir-se la informació.
 El consumidor rebrà una notificació quan pugui llegir les dades i avisarà al productor que ja pot desar noves dades.
@@ -268,7 +296,7 @@ public synchronized void consumidor(){
 
 [Exemple de productor-consumidor](../src/fils/ProductorConsumidor.java)
 
-### 4.2. Pila (LIFO)
+### 5.2. Pila (LIFO)
 
 L'esquema de pila (*Last In First Out*) permet que productor i consumidor disposin de més espai per compartir informació.
 En aquest cas el productor generarà noves dades mentre hi hagi espai a la pila.
@@ -277,7 +305,7 @@ començant sempre per la última introduïda.
 
 [Exemple de pila](../src/fils/ProductorConsumidor_Pila.java)
 
-### 4.3. Cua (LILO)
+### 5.3. Cua (LILO)
 
 L'esquema de cua (*Last In Last Out*) també permet que productor i consumidor disposin de més espai per compartir informació, 
 però, a diferència de la pila, les dades es processen estrictament en l'ordre d'arribada.
@@ -286,8 +314,9 @@ processarà les dades de la pila mentre hi hagi informació disponible i manteni
 
 [Exemple de cua](../src/fils/ProductorConsumidor_Cua.java)
 
-## 5. Recursos
+## 6. Recursos
 
 * [Pràctiques de programació multifil](./activitats/PractiquesMultifil.md)
 * [Classe Thread](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html)
+* [Java Memory model](http://tutorials.jenkov.com/java-concurrency/java-memory-model.html)
 

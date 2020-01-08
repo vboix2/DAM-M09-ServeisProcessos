@@ -8,7 +8,7 @@ public class Compartida_Interficie {
     public static void main(String[] args) throws InterruptedException {
         
         // Creem els fils
-        Compartida_Fil fr = new Compartida_Fil();
+        Compartida_Fil fr = new Compartida_Fil(20);
         Thread primer = new Thread(fr);
         Thread segon = new Thread(fr);
         Thread tercer = new Thread(fr);
@@ -34,12 +34,14 @@ public class Compartida_Interficie {
 
 class Compartida_Fil implements Runnable{
     
-    public int comptador;
-    public boolean fi;
+    public volatile int comptador;
+    public volatile boolean fi;
+    private int ultim;
 
-    public Compartida_Fil() {
+    public Compartida_Fil(int ultim) {
         this.comptador = 0;
         this.fi = false;
+        this.ultim = ultim;
     }
     
     @Override
@@ -53,11 +55,11 @@ class Compartida_Fil implements Runnable{
     
     public synchronized void incrementa(){
         // Mètode bloquejat
-        if (comptador<11){
+        if (comptador<=ultim){
             System.out.println(Thread.currentThread().getName() + " " + comptador);
             comptador++;
         }
-        if (comptador==11){
+        if (comptador==ultim+1){
             fi = true;
         }   
     }
