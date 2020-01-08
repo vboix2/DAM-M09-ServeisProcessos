@@ -231,8 +231,7 @@ public void metodeNoSincronitzat(){
 
 [Comptador compartit entre fils](../src/fils/Compartida_Herencia.java)
 
-
-### 4.5. wait i notify
+### 4.5. wait i notify
 
 Els mètodes `wait()`, `notify()` i `notifyAll()` serveixen per a què els fils es comuniquin entre si;
 permeten que un mètode esperi a un altre abans de continuar la seva execució.
@@ -305,9 +304,11 @@ començant sempre per la última introduïda.
 
 [Exemple de pila](../src/fils/ProductorConsumidor_Pila.java)
 
-### 5.3. Cua (LILO)
+![LIFO i FIFO](../imatges/ProductorConsumidor.png)
 
-L'esquema de cua (*Last In Last Out*) també permet que productor i consumidor disposin de més espai per compartir informació, 
+### 5.3. Cua (FIFO)
+
+L'esquema de cua (*First In First Out*) també permet que productor i consumidor disposin de més espai per compartir informació, 
 però, a diferència de la pila, les dades es processen estrictament en l'ordre d'arribada.
 El productor generarà noves dades mentre hi hagi espai a la cua i el consumidor 
 processarà les dades de la pila mentre hi hagi informació disponible i mantenint l'ordre d'arribada.
