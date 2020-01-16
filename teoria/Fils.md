@@ -317,7 +317,7 @@ processarà les dades de la pila mentre hi hagi informació disponible i manteni
 
 ## 6. Recursos
 
-* [Pràctiques de programació multifil](./activitats/PractiquesMultifil.md)
+* [Pràctiques de programació multifil](../activitats/PractiquesMultifil.md)
 * [Classe Thread](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html)
 * [Java Memory model](http://tutorials.jenkov.com/java-concurrency/java-memory-model.html)
 
