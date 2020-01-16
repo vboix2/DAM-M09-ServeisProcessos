@@ -79,18 +79,18 @@ class Productor_cua implements Runnable {
     public Productor_cua(Cua c) {
         cua = c;
     }
-    private int numero = 0;
 
     public void run() {
 
         for (int i = 0; i < 5; i++) {
-            numero = (int) (10 * Math.random());
-            cua.deixar(numero);
-            System.out.println("Produït el número " + numero);
             try {
                 Thread.sleep((int) (Math.random() * 1000));
             } catch (InterruptedException e) {;
             }
+            
+            int numero = (int) (10 * Math.random());
+            cua.deixar(numero);
+            System.out.println("Produït el número " + numero);
         }
     }
 }
@@ -107,13 +107,14 @@ class Consumidor_cua implements Runnable {
         int num;
 
         for (int i = 0; i < 5; i++) {
-            num = cua.afagar();
-            System.out.println("Número agafat: " + num);
             try {
                 Thread.sleep((int) (Math.random() * 2000));
             } catch (InterruptedException e) {
                 System.out.println("Problema adormint el fil");
             }
+            
+            num = cua.afagar();
+            System.out.println("Número agafat: " + num);
         }
     }
 }

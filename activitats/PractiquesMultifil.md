@@ -39,3 +39,13 @@ Farem una aplicació que gestioni l'accés a un pàrquing públic.
 ## Transaccions en un banc
 
 [Solució](../src/fils/activitats/Transaccions_Banc.java)
+
+## Mitjana d'un flux continu de dades
+
+L'objectiu d'aquesta pràctica és implementar un model productor-consumidor que 
+calculi la mitjana aritmètica d'un flux continu de nombres aleatoris.
+
+* Crea una classe de tipus productor i una altra de tipus consumidor; a més, crea una classe que actuï de pila i una classe principal.
+* El mètode principal ha de crear una pila de 20 posicions, tres fils de tipus productor i un fil de tipus consumidor.
+* Cada fil de tipus productor esperarà un temps aleatori entre 0 i 2 segons i generarà un nombre aleatori de tipus ´double` entre 0 i 10.
+* El fil consumidor mostrarà per pantalla la mitjana aritmètica de tots els valors recollits fins al moment cada 5 segons.

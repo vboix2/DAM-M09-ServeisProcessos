@@ -71,18 +71,18 @@ class Productor_pila implements Runnable {
     public Productor_pila(Pila p) {
         pila = p;
     }
-    private int numero = 0;
-
+       
+    @Override
     public void run() {
 
         for (int i = 0; i < 5; i++) {
-            numero = (int) (10 * Math.random());
-            pila.deixar(numero);
-            System.out.println("Produït el número " + numero);
             try {
                 Thread.sleep((int) (Math.random() * 1000));
             } catch (InterruptedException e) {;
             }
+            int numero = (int) (10 * Math.random());
+            pila.deixar(numero);
+            System.out.println("Produït el número " + numero);
         }
     }
 }
@@ -94,18 +94,19 @@ class Consumidor_pila implements Runnable {
     public Consumidor_pila(Pila p) {
         pila = p;
     }
-
+    
+    @Override
     public void run() {
         int num;
 
         for (int i = 0; i < 5; i++) {
-            num = pila.afagar();
-            System.out.println("Número agafat: " + num);
             try {
                 Thread.sleep((int) (Math.random() * 2000));
             } catch (InterruptedException e) {
                 System.out.println("Problema adormint el fil");
             }
+            num = pila.afagar();
+            System.out.println("Número agafat: " + num);
         }
     }
 }
