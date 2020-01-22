@@ -13,7 +13,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import javax.swing.JOptionPane;
 
-public class Ex3_Xat_Client {
+public class TCP_Xat_Client {
 
     public static void main(String[] args) {
         int port = 9090;

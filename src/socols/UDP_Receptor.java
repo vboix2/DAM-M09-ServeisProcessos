@@ -9,7 +9,7 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-public class Ex2_Receptor {
+public class UDP_Receptor {
 
     public static void main(String[] args) throws UnknownHostException,
             SocketException, IOException {

@@ -11,7 +11,7 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class Ex2_Emissor {
+public class UDP_Emissor {
 
     public static void main(String[] args) throws UnknownHostException,
             SocketException, IOException {
