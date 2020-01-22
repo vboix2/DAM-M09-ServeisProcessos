@@ -18,7 +18,6 @@ aquesta versió està sent substituïda per la versió 6 (IPv6) que compta amb a
 Java disposa de la classe `InetAddress` per gestionar adreces IP.
 Aquesta classe és una generalització de les subclasses `Inet4Address` i 
 `Inet6Adress` i permet treballar amb adreces IP independentment de la versió utilitzada.
-
 Per crear una adreça IP hem d'utilitzar algun dels mètodes estàtics:
 
 * `getByName()` - crea un objecte InetAddress a partir d'un nom de domini o una adreça IP
@@ -29,17 +28,17 @@ InetAddress ipOpenDNS = InetAddress.getByName("208.67.222.222");
 
 * `getAllByName()` - crea un array d'adreces amb totes les IPs associades a un nom de domini
 ```java
-InetAddress[] google = InetAddress.getAllByName("google.com");
+InetAddress[] ipGoogle = InetAddress.getAllByName("google.com");
 ```
 
 * `getLoopbackAddress()` - crea un objecte InetAddress amb l'adreça loopback del sistema (127.0.0.1)
 ```java
-InetAddress[] loopback = InetAddress.getLoopbackAddress();
+InetAddress ipLoopback = InetAddress.getLoopbackAddress();
 ```
 
 * `getLocalHost()` - crea un objecte InetAddress amb l'adreça localhost del sistema
 ```java
-InetAddress[] localhost = InetAddress.getLocalHost();
+InetAddress ipLocal = InetAddress.getLocalHost();
 ```
 
 En el cas que el format de l'adreça no sigui correcte o no es pugui resoldre es 
@@ -53,6 +52,16 @@ associat a la IP a través dels mètodes:
 * `getAddress()` - obté un `byte[]` amb el valor de la IP associada
 * `isLoopbackAddress()` - obté un `boolean` indicant si l'adreça és del tipus 127.0.0.x
 * `isSiteLocalAddress()` - obté un `boolean` indicant si es tracta d'una adreça privada de xarxa
+
+```java
+InetAddress ipLocal = InetAddress.getLocalHost();
+
+String ip = ipLocal.getHostAddress();
+String name = ipLocal.getHostName();
+byte[] ip = ipLocal.getAddress();
+boolean esLoopback = ipLocal.isLoopbackAddress();
+boolean esLocal = ipLocal.isSiteLocalAddress();
+```
 
 ### 1.2. Recursos
 
