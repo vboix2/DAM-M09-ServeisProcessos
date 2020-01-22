@@ -5,7 +5,7 @@ Apunts del mòdul 9 de Desenvolupament d'Aplicacions Multiplataforma
 
 1. [Criptografia](./teoria/Criptografia.md)
 2. [Processos i fils](./teoria/Fils.md)
-3. Sòcols i serveis
+3. [Sòcols i serveis](./teoria/Sockets.md)
 
 ## Activitats
 
