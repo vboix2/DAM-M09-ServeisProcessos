@@ -65,6 +65,98 @@ boolean esLocal = ipLocal.isSiteLocalAddress();
 
 ### 1.2. Recursos
 
+En una xarxa, els ordinadors poden posar a disposició de la resta de dispositius 
+diferents tipus de recursos (dades, fitxers, impressores...).
+Cada recurs s'identifica utilitzant una cadena de caràcters única 
+anomenada URL (*Uniform Resource Locator*) amb l'estructura següent:
+
+```
+esquema://autoritat/ruta
+```
+
+* esquema - nom del protocol d'accés per accedir al recurs (http, ftp, file, jdbc...)
+* autoritat - identificador del dispositiu a la xarxa (adreça ip o el nom del domini)
+* ruta - identificador del recurs dins del dispositiu
+
+Aquesta estructura es pot ampliar amb altres paràmetres optatius.
+La seva sintaxi més general és la següent:
+
+```
+esquema://usuari:contrasenya@autoritat:port/ruta?consulta#fragment
+```
+
+* consulta - parelles atribut=valor (separades pel delimitador &) que proporcionen
+paràmetres per a la cerca d'informació dins del recurs.
+* fragment - identificador que enllaça a un recurs secundari o a una part del recurs
+
+Java disposa de dues classes per treballar amb recursos: `URL` i `URLConnection`.
+La classe `URL` representa una URL, és a dir, l'adreça a un recurs d'internet.
+Alguns dels seus constructors són:
+
+* `URL(String cadenaURL)` - crea un objecte URL a partir de la seva adreça
+* `URL(String protocol, String autoritat, String ruta)` - crea un objecte URL a
+partir del protocol, l'identificador del dispositiu i l'identificador del recurs
+
+Els principals mètodes per obtenir informació dels objectes `URL` són:
+
+* `getProtocol()` - obté el nom del protocol de la URL
+* `getAuthority()` - obté el nom de l'autoritat de la URL
+* `getPath()` - obté el nom de la ruta, l'identificador del recurs dins del dispositiu
+* `getPort()` - obté el nom del port de la URL
+* `toString()` - obté un `String` amb tota la cadena de la URL
+
+Per obtenir informació d'un recurs podem utilitzar el mètode `openStream()` per aconseguir 
+un flux d'entrada de dades des del contingut remot.
+
+```java
+URL url = new URL("https://...");
+BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+String linia;
+String html = "":
+while ((linia = in.readLine()) != null) {
+    html += linia;
+}
+in.close();
+```
+
+La classe `URLConnection` permet obrir una connexió amb el recurs i realitzar-hi 
+operacions de lectura i escriptura.
+Per crear una connexió utilitzarem el mètode de URL `openConnection()`.
+```java
+URL url = new URL("https://...");
+URLConnection con = url.openConnection();
+```
+
+A més, aquesta classe permet obtenir informació addicional (metadades) sobre el contingut.
+Alguns dels mètodes són:
+
+* `getContentEncoding()` - obté la codificació de caràcters del contingut
+* `getContentLength()` - obté la longitud del contingut
+* `getContentType()` - obté el tipus de contingut
+* `getDate()` - obté la data de creació del recurs
+
+```java
+String tipus = con.getContentType();
+String codificacio = con.getContentEncoding();
+int longitud = con.getContentLength();
+long data = con.getDate();
+```
+
+Aquesta classe també ofereix un flux de dades per obtenir el contingut del recurs 
+invocant el mètode `getInputStream()`.
+
+```java
+InputStream in = con.getInputStream();
+BufferedReader br = new BufferedReader(new InputStreamReader(in));
+String html="";
+String linia;
+while((linia = br.readLine())!= null){
+    html += linia;
+}
+in.close();
+```
+
+[Exemples d'utilització de les classes URL i URLConnection](../src/socols/Recursos.java)
 
 ### 1.3. Sòcols no orientats a connexió (UDP)
 
@@ -79,5 +171,21 @@ boolean esLocal = ipLocal.isSiteLocalAddress();
 
 ## 3. Recursos
 
-* [Documentació de la classe InetAddress](https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)
+Documentació de Java:
+
+* [InetAddress](https://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)
+* [URL](https://docs.oracle.com/javase/8/docs/api/java/net/URL.html)
+* [URLConnection](https://docs.oracle.com/javase/8/docs/api/java/net/URLConnection.html)
+* [DatagramSocket](https://docs.oracle.com/javase/8/docs/api/java/net/DatagramSocket.html)
+* [DatagramPacket](https://docs.oracle.com/javase/8/docs/api/java/net/DatagramPacket.html)
+* [Socket](https://docs.oracle.com/javase/8/docs/api/java/net/Socket.html)
+* [ServerSocket](https://docs.oracle.com/javase/8/docs/api/java/net/ServerSocket.html)
+
+
+Apunts de l'IOC:
+
+* [1.Programació de comunicacions en xarxa](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u2/a1/continguts.html)
+* [2.Generació de serveis en xarxa](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u2/a2/continguts.html)
+
+
 
