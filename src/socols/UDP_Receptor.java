@@ -1,29 +1,28 @@
-/*
-Implementació de sòcols no orientats a connexió (UDP)
- */
+
 package socols;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 public class UDP_Receptor {
 
-    public static void main(String[] args) throws UnknownHostException,
-            SocketException, IOException {
+    public static void main(String[] args) {
 
-        DatagramSocket socket = new DatagramSocket(5555);
+        try {
+            DatagramSocket socket = new DatagramSocket(5555);
 
-        while (true) {
-            byte[] missatge = new byte[1024];
-            DatagramPacket packet = new DatagramPacket(missatge, missatge.length);
-            socket.receive(packet);
+            while (true) {
+                byte[] missatge = new byte[1024];
+                DatagramPacket packet = new DatagramPacket(missatge, missatge.length);
+                socket.receive(packet);
 
-            String text = new String(missatge);
-            System.out.println("IP: " + packet.getAddress()
-                    + " Text: " + text);
+                String text = new String(packet.getData()).trim();
+                if (text.equals("q")) break;
+                System.out.println("IP: " + packet.getAddress()
+                        + " Text: " + text);
+            }
+        } catch (Exception ex) {
+            System.out.println("Problema amb la recepció");
         }
 
     }

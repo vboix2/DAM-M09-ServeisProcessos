@@ -158,10 +158,78 @@ in.close();
 
 [Exemples d'utilització de les classes URL i URLConnection](../src/socols/Recursos.java)
 
-### 1.3. Sòcols no orientats a connexió (UDP)
+### 1.3. Sòcols
+
+Els sòcols són una interfície que permet que dues aplicacions intercanviïn informació 
+independentment de la plataforma o dispositiu on s'executin.
+En Java, els sòcols s'implementen a la capa de transport i, per tant, 
+no és possible utilitzar protocols per sota d'aquesta capa.
+Cada sòcol es troba associat a una IP i un port, de tal manera que podem enviar 
+i rebre informació a través de la xarxa utilitzant algun dels protocols sobre IP 
+disponibles.
+
+En la pila TCP/IP, els dos protocols més importants associats a la capa de transport
+són el TCP i el UDP. 
+Es tracta de protocols port a port, per tant, transmeten les dades des del port 
+corresponent del host origen fins al port de destinació.
+
+El protocol UDP s'utilitza quan es vol prioritzar la velocitat de transmissió per 
+sobre de la fiabilitat.
+Es tracta d'un protocol no orientat a connexió, per tant, no comprova que el 
+receptor estigui disponible abans de començar la transmissió i no garanteix que 
+els paquets seran rebuts a destinació.
+
+El protocol TCP és un protocol orientat a connexió, per tant, comprova la disponibilitat 
+del receptor abans d'iniciar la transmissió i en garanteix la fiabilitat mitjançant
+control de seqüència, control d'errors i control de flux.
 
 
-### 1.4. Sòcols orientats a connexió (TCP)
+**Sòcols no orientats a connexió (UDP)**
+
+Per establir una connexió utilitzant el protocol UDP hem d'implementar un sòcol 
+no orientat a connexió.
+En Java podem fer-ho utilitzant la classe `DatagramSocket`, que disposa dels constructors:
+
+* `DatagramSocket()` - crea una instància associada a un port temporal
+* `DatagramSocket(int port)` - crea una instància associada al port especificat (la classe seleccionarà una IP per defecte de les disponibles al dispositiu)
+* `DatagramSocket(int port, InetAddress ip)` - crea una instància associada al port i ip especificats
+
+Els paquets de dades definits al protocol UDP es representen amb objectes de la classe
+`DatagramPacket`.
+
+* `DatagramPacket(byte[] dades, int long, InetAddress ip, int port)` - crea un paquet
+amb les dades i la longitud especificades
+* `DatagramPacket(byte[] dades, int long, InetAddress ip, int port)` - crea un paquet
+amb les dades, longitud, adreça ip i port especificats
+
+Per enviar dades podem utilitzar el mètode `send()`.
+```java
+# Creem el paquet de dades
+String missatge = "Hola";
+byte[] dades = missatge.getBytes();
+InetAddress ipDest = InetAddress.getByName("localhost");
+int portDest = 5555;
+DatagramPacket packet = new DatagramPacket(dades, dades.length, ipDest, portDest);
+
+# Creem el sòcol que enviarà les dades
+DatagramSocket socket = new DatagramSocket();
+socket.send(packet);
+```
+
+Per rebre les dades cal crear un paquet de dades buit, 
+però amb una longitud igual o superior a la de les dades que es rebran.
+Les dades s'obtindran a través del sòcol utilitzant el mètode `receive()`.
+```java
+# Creem el paquet de dades
+byte[] dades = new byte[1024];
+DatagramPacket packet = new DatagramPacket(dades, dades.length);
+
+# Creem el sòcol que rebrà les dades
+DatagramSocket socket = new DatagramSocket(5555);
+socket.receive(packet);
+```
+
+**Sòcols orientats a connexió (TCP)**
 
 
 ## 2. Programació de serveis en xarxa
