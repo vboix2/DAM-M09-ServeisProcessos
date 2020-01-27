@@ -180,11 +180,12 @@ receptor estigui disponible abans de començar la transmissió i no garanteix qu
 els paquets seran rebuts a destinació.
 
 El protocol TCP és un protocol orientat a connexió, per tant, comprova la disponibilitat 
-del receptor abans d'iniciar la transmissió i en garanteix la fiabilitat mitjançant
-control de seqüència, control d'errors i control de flux.
+del receptor abans d'iniciar la transmissió, garanteix que les dades arribaran 
+en el mateix ordre que s'han enviat i assegura la fiabilitat de la transmissió 
+mitjançant control de seqüència, control d'errors i control de flux.
 
 
-**Sòcols no orientats a connexió (UDP)**
+**1.3.1 Sòcols no orientats a connexió (UDP)**
 
 Per establir una connexió utilitzant el protocol UDP hem d'implementar un sòcol 
 no orientat a connexió.
@@ -229,8 +230,73 @@ DatagramSocket socket = new DatagramSocket(5555);
 socket.receive(packet);
 ```
 
-**Sòcols orientats a connexió (TCP)**
+Cal tenir en compte que el protocol UDP no és *full-duplex*, 
+això vol dir que mentre un sòcol estigui escoltant a un port no podrà enviar dades.
+Per tant, si es vol establir una comunicació bidireccional caldrà sincronitzar les 
+transmissions o utilitzar dos sòcols per dispositiu.
 
+[Exemple d'emissor UDP](../src/socols/UDP_Emissor.java)
+[Exemple de receptor UDP](../src/socols/UDP_Receptor.java)
+
+**1.3.2. Sòcols orientats a connexió (TCP)**
+
+Per establir una connexió utilitzant el protocol TCP utilitzarem les classes `Socket` i `ServerSocket`.
+
+La classe `ServerSocket` ens permet crear un sòcol orientat a connexió que actuarà 
+de servidor. Per crear-lo podem utilitzar el constructor `ServerSocket(int port)`.
+Una vegada creat, el servidor escoltarà el port que tingui assignat a l'espera 
+de rebre una petició de connexió per part d'un client.
+
+```java
+int port = 9090;
+ServerSocket server = new ServerSocket(port);
+
+```
+
+Abans d'iniciar la transmissió, haurem de crear un sòcol al dispositiu client 
+que faci la petició al servidor, indicant la ip i el port del servidor.
+
+```java
+ipServidor = InetAddress.getByName("192.168.1.33");
+Socket socket = new Socket(ipServidor, port);
+```
+
+El servidor, en rebre la petició l'haurà d'acceptar i crear un sòcol específic 
+per comunicar-se, que serà diferent per a cada dispositiu connectat.
+Aquest procés es realitza amb el mètode `accept()`.
+
+```java
+Socket socket = server.accept();
+```
+
+A partir d'aquest moment, els dos dispositius disposen d'un sòcol i un port 
+reservats per a la transmissió en tots dos sentits, ja que el protocol TCP 
+utilitza una comunicació *full-duplex*.
+Cada dispositiu haurà de crear dos fluxos de dades (*streams*) per comunicar-se: 
+un flux de sortida per enviar dades (*OutputStream*) i un flux d'entrada per 
+rebre dades (*InputStream*).
+Podem crear-los utilitzant els mètodes `getInputStream()` i 
+`getOutputStream()`.
+D'aquesta manera podrem enviar i rebre dades utilitzant els mètodes `print()` i 
+`readLine()`.
+
+```java
+in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+out = new PrintStream(socket.getOutputStream());
+
+String missatge = in.readLine();
+
+String resposta = "Resposta";
+out.println(resposta);
+```
+Per finalitzar la transmissió utilitzarem el mètode `close()`.
+
+```java
+socket.close();
+```
+
+[Exemple de servidor TCP](../src/socols/TCP_Servidor.java)
+[Exemple de client TCP](../src/socols/TCP_Client.java)
 
 ## 2. Programació de serveis en xarxa
 
