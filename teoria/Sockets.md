@@ -185,7 +185,7 @@ en el mateix ordre que s'han enviat i assegura la fiabilitat de la transmissió
 mitjançant control de seqüència, control d'errors i control de flux.
 
 
-**1.3.1 Sòcols no orientats a connexió (UDP)**
+#### 1.3.1 Sòcols no orientats a connexió (UDP)
 
 Per establir una connexió utilitzant el protocol UDP hem d'implementar un sòcol 
 no orientat a connexió.
@@ -236,9 +236,11 @@ Per tant, si es vol establir una comunicació bidireccional caldrà sincronitzar
 transmissions o utilitzar dos sòcols per dispositiu.
 
 [Exemple d'emissor UDP](../src/socols/UDP_Emissor.java)
+
 [Exemple de receptor UDP](../src/socols/UDP_Receptor.java)
 
-**1.3.2. Sòcols orientats a connexió (TCP)**
+
+#### 1.3.2. Sòcols orientats a connexió (TCP)
 
 Per establir una connexió utilitzant el protocol TCP utilitzarem les classes `Socket` i `ServerSocket`.
 
@@ -296,6 +298,7 @@ socket.close();
 ```
 
 [Exemple de servidor TCP](../src/socols/TCP_Servidor.java)
+
 [Exemple de client TCP](../src/socols/TCP_Client.java)
 
 ## 2. Programació de serveis en xarxa
