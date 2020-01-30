@@ -333,7 +333,13 @@ processarà les dades de la pila mentre hi hagi informació disponible i manteni
 
 ## 6. Recursos
 
-* [Pràctiques de programació multifil](../activitats/PractiquesMultifil.md)
+Activitats
+
+* [Pràctiques](../activitats/PractiquesMultifil.md)
+* [Examen 2019-20](./activitats/Examen_2019_Multifil.pdf) - [Solució](./src/criptografia/activitats/Examen2019.java)
+
+Enllaços
+
 * [Classe Thread](https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html)
 * [Java Memory model](http://tutorials.jenkov.com/java-concurrency/java-memory-model.html)
 

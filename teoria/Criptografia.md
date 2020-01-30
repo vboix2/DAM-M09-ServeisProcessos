@@ -192,6 +192,13 @@ Aquest mecanisme és utilitzat en el protocol **TLS** per a l'establiment de con
 
 ## 6. Recursos
 
+Activitats
+
+* [Pràctiques](./activitats/PractiquesCriptografia.md)
+* [Examen 2019-20](./activitats/Examen_2019_Criptografia.pdf) - [Solució](./src/criptografia/activitats/Examen2019.java)
+
+Enllaços
+
 * [Apunts de l'IOC](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u3/a1/continguts.html)
 * [Documentació de la classe Cipher](https://docs.oracle.com/javase/8/docs/api/javax/crypto/Cipher.html)
 * [Criptografia de clau pública](https://ca.wikipedia.org/wiki/Criptografia_de_clau_pública)
