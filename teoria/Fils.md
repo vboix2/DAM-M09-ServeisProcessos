@@ -243,8 +243,22 @@ permeten que un mètode esperi a un altre abans de continuar la seva execució.
 Aquests mètodes s'han de cridar sempre des d'un mètode sincronitzat.
 A més, cal tenir en compte que el mètode wait pot llençar l'excepció `InterruptedException`.
 
-Un possible esquema de treball d'aquests mètodes és el següent.
+Un possible esquema de treball és el següent:
 
+```java
+synchronized void metode(){
+    while(!disponible){
+        wait();
+    }
+    disponible = false;
+    // Operacions atòmiques
+    disponible = true;
+    notify();
+}
+
+```
+
+Un altre possible esquema és aquest:
 ```java
 synchronized void metode(){
     while(!condicio){
@@ -260,6 +274,8 @@ synchronized void canviCondicio(){
     notify();
 }
 ```
+
+[Exemple d'ús dels mètodes wait() i notify()](../src/fils/activitats/Transaccions_Banc.java)
 
 ## 5. Productor-consumidor
 
