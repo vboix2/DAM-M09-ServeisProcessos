@@ -301,12 +301,12 @@ socket.close();
 
 [Exemple de client TCP](../src/socols/TCP_Client.java)
 
-## 2. Programació de serveis en xarxa
 
-### 2.1. JavaMail
+## 2. Recursos
 
+Activitats:
 
-## 3. Recursos
+* [Pràctiques](../activitats/PractiquesSocols.md)
 
 Documentació de Java:
 
@@ -321,8 +321,8 @@ Documentació de Java:
 
 Apunts de l'IOC:
 
-* [1.Programació de comunicacions en xarxa](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u2/a1/continguts.html)
-* [2.Generació de serveis en xarxa](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u2/a2/continguts.html)
+* [1. Programació de comunicacions en xarxa](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u2/a1/continguts.html)
+* [2. Generació de serveis en xarxa](https://ioc.xtec.cat/materials/FP/Materials/2252_DAM/DAM_2252_M09/web/html/WebContent/u2/a2/continguts.html)
 
 
 
