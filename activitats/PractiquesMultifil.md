@@ -49,3 +49,5 @@ calculi la mitjana aritmètica d'un flux continu de nombres aleatoris.
 * El mètode principal ha de crear una pila de 20 posicions, tres fils de tipus productor i un fil de tipus consumidor.
 * Cada fil de tipus productor esperarà un temps aleatori entre 0 i 2 segons i generarà un nombre aleatori de tipus ´double` entre 0 i 10.
 * El fil consumidor mostrarà per pantalla la mitjana aritmètica de tots els valors recollits fins al moment cada 5 segons.
+
+[Solució](../src/fils/activitats/MitjanaFluxDades.java)
