@@ -24,6 +24,8 @@ L'objectiu d'aquesta pràctica és calcular la suma de valors d'un array paral·
 5. Sincronitza el final dels fils i recupera la suma de cada fragment en un nou array.
 6. Suma els valors del nou array i mostra el resultat per pantalla.
 
+[Solució](../src/fils/activitats/SumaArray.java)
+
 ## Control d'accés a un pàrquing
 
 Farem una aplicació que gestioni l'accés a un pàrquing públic. 
