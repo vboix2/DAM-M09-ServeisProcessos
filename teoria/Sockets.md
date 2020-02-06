@@ -112,7 +112,7 @@ un flux d'entrada de dades des del contingut remot.
 URL url = new URL("https://...");
 BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 String linia;
-String html = "":
+String html = "";
 while ((linia = in.readLine()) != null) {
     html += linia;
 }
