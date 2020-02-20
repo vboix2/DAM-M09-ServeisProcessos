@@ -29,5 +29,45 @@ Entre cada descàrrega afegeix un temps d'espera de 3 segons.
 L'objectiu d'aquesta pràctica és aprendre a comunicar dos dispositius utilitzant el 
 protocol TCP.
 
-Crearem una aplicació que permeti xatejar entre dos ordinadors coneixent 
-les seves adreces ip.
+Crearem una aplicació que permeti xatejar entre dos dispositius.
+Per poder establir una connexió bidireccional i assegurar la recepció dels paquets
+utilitzarem el protocol TCP.
+A més, per poder enviar i rebre dades en qualsevol moment haurem de crear dos fils
+d'execució per a cada dispositiu: un dedicat a rebre missatges i l'altre només a
+enviar-los. En total necessitarem 4 classes.
+
+Classe `Listen`:
+
+* Crea una classe `Listen` que sigui subclasse de `Thread`.
+* Declara-hi dos atributs de tipus `BufferedReader` i `Socket`.
+* Crea un constructor que permeti assignar un socket a l'atribut, creï un flux 
+d'entrada de dades a partir d'aquest socket i el guardi a l'atribut BufferedReader.
+* Implementa el mètode `run()` fent un bucle que llegeixi els missatges entrants 
+i els imprimeixi per pantalla.
+
+Classe `Talk`:
+
+* Crea una classe `Talk`, que també sigui subclasse de `Thread`.
+* Declara-hi dos atributs de tipus `PrintStream` i `Socket`.
+* Crea un constructor que permeti assignar un socket a l'atribut, creï un flux 
+de sortida de dades a partir d'aquest socket i el guardi a l'atribut de tipus PrintStream.
+* Implementa el mètode `run()` fent un bucle que llegeixi per teclat els missatges
+i els enviï a l'altre dispositiu.
+
+Classe `Server`:
+
+* Crea una classe Server amb un mètode principal.
+* Inicia un `ServerSocket` escoltant a un port determinat.
+* Quan s'accepti la connexió crea un objecte `Socket` i inicia la comunicació 
+a través de dos fils, un de tipus Talk i l'altre de tipus Listen.
+ 
+Classe `Client`:
+
+* Crea una classe Client amb un mètode principal.
+* Inicia una connexió al servidor i port especificat.
+* Quan s'accepti la connexió crea un objecte `Socket` i inicia la comunicació 
+a través de dos fils, un de tipus Talk i l'altre de tipus Listen.
+
+Afegeix totes les funcionalitats que creguis convenients per millorar el 
+funcionament de l'aplicació.
+
