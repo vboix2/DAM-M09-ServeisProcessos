@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.Calendar;
 
 
-public class Examen2019 {
+public class Examen2019_Server {
     
     private static BufferedReader in;
     private static PrintStream out;
@@ -73,7 +73,7 @@ public class Examen2019 {
     public static String funcio_dia(){
         Calendar now = Calendar.getInstance();
         int day = now.get(Calendar.DAY_OF_MONTH);
-        int month = now.get(Calendar.MONTH);
+        int month = now.get(Calendar.MONTH) + 1;
         int year = now.get(Calendar.YEAR);
         return "Avui és "+day+"/"+month+"/"+year;
     }
